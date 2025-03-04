@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Gallery</title>
     <style>
+        /* CSS Variables for Themes */
+        :root {
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --accent-color: #e4405f; /* TikTok Pink */
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 5px;
+        }
+
+        /* Dark Theme */
+        .dark-theme {
+            --bg-color: #333;
+            --text-color: #f9f9f9;
+            --box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        /* TikTok Theme */
+        .tiktok-theme {
+            --bg-color: #000;
+            --text-color: #fff;
+            --accent-color: #69C9D0; /* TikTok Blue */
+        }
+
         /* TikTok Fonts */
         @font-face {
             font-family: 'TikTokFont-Regular';
@@ -17,10 +40,11 @@
 
         body {
             font-family: 'TikTokFont-Regular', sans-serif;
-            background-color: #f9f9f9;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            color: #333;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
         }
 
         h2 {
@@ -28,50 +52,152 @@
             text-align: center;
             margin-top: 30px;
             margin-bottom: 20px;
-            color: #e4405f; /* TikTok Pink */
+            color: var(--accent-color);
         }
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .gallery img {
-            width: 200px; /* Adjust as needed */
-            height: auto;
-            margin: 15px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Up to 4 images per row */
+            gap: 20px;
+            padding: 20px;
         }
+
+        .image-container {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+
+        .filename {
+            font-size: 0.8em;
+            margin-top: 5px;
+            color: var(--text-color);
+        }
+      /* Theme Toggle Button */
+      .theme-toggle {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          padding: 10px 15px;
+          background-color: #69c9d0;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          transition: background-color 0.3s;
+      }
+
+      .theme-toggle:hover {
+          background-color: #079ea8;
+      }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
     <div class="container">
         <!-- Current Campaigns Section -->
         <h2>Current Campaigns</h2>
         <div class="gallery">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" alt="Current Campaigns QR Code 1">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" alt="Current Campaigns QR Code 2">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" alt="Current Campaigns QR Code 3">
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" alt="Current Campaigns QR Code 1">
+                </a>
+                <div class="filename">qr1.png</div>
+            </div>
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" alt="Current Campaigns QR Code 2">
+                </a>
+                <div class="filename">qr2.png</div>
+            </div>
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" alt="Current Campaigns QR Code 3">
+                </a>
+                <div class="filename">qr3.png</div>
+            </div>
         </div>
 
         <!-- Customer Service Section -->
         <h2>Customer Service</h2>
         <div class="gallery">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" alt="Customer Service QR Code 1">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" alt="Customer Service QR Code 2">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" alt="Customer Service QR Code 3">
+             <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" alt="Customer Service QR Code 1">
+                </a>
+                <div class="filename">qr1.png</div>
+            </div>
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" alt="Customer Service QR Code 2">
+                </a>
+                <div class="filename">qr2.png</div>
+            </div>
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" alt="Customer Service QR Code 3">
+                </a>
+                <div class="filename">qr3.png</div>
+            </div>
         </div>
 
         <!-- Spark Code Submissions Section -->
         <h2>Spark Code Submissions</h2>
         <div class="gallery">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" alt="Spark Code Submissions QR Code 1">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" alt="Spark Code Submissions QR Code 2">
-            <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" alt="Spark Code Submissions QR Code 3">
+             <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr1.png" alt="Spark Code Submissions QR Code 1">
+                </a>
+                <div class="filename">qr1.png</div>
+            </div>
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr2.png" alt="Spark Code Submissions QR Code 2">
+                </a>
+                <div class="filename">qr2.png</div>
+            </div>
+            <div class="image-container">
+                <a href="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" target="_blank">
+                    <img src="https://raw.githubusercontent.com/angelrodriquez/gallery/main/qr3.png" alt="Spark Code Submissions QR Code 3">
+                </a>
+                <div class="filename">qr3.png</div>
+            </div>
         </div>
     </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                body.classList.remove('tiktok-theme'); // Remove tiktok-theme as well
+            } else if (body.classList.contains('tiktok-theme')) {
+                body.classList.remove('tiktok-theme'); // Remove tiktok-theme first
+                body.classList.add('dark-theme');       // Then add dark-theme
+            }
+             else {
+                body.classList.add('dark-theme');
+            }
+        }
+    </script>
 </body>
 </html>
